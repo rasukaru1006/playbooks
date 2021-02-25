@@ -1,0 +1,6 @@
+---
+- name: httpd_restart
+  systemd:
+    name: httpd.service
+    state: restarted
+  become: yes
