@@ -1,13 +1,16 @@
 ---
-# httpdがインストールされているかの確認
-- include_tasks: install_latest_httpd.yaml
+- name: check installed httpd
+  yum: 
+    name: httpd
+    state: installed
 
+- name: copy config-file to remote
+  become: true
+  copy: 
+    src: 'httpd.conf'
+    dest: '/etc/httpd/conf/httpd.conf'
+    owner: 'root'
+    mode: 644
+    force: true
+  notify: httpd_restart
 
-# confを投入
-#- include_tasks: install_httpd.yaml
-#  with_items: "{{ VAR_RH_sshd_config }}"
-#  loop_control:
-#    loop_var: parameter
-#  when: VAR_RH_sshd_config is defined
-
-# リスタートする
