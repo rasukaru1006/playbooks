@@ -3,4 +3,5 @@
   gather_facts: true
   roles: 
     - role: httpd_service
+      VARS_LISTNER: '10080'
   strategy: free

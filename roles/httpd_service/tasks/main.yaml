@@ -6,11 +6,11 @@
 
 - name: copy config-file to remote
   become: true
-  copy: 
+  template: 
     src: 'httpd.conf'
     dest: '/etc/httpd/conf/httpd.conf'
     owner: 'root'
     mode: 644
-    force: true
+    force: true 
   notify: httpd_restart
 
