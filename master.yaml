@@ -1,7 +1,26 @@
 ---
-- hosts: webservers
+- hosts: 'linux'
   gather_facts: true
+  roles:
+    - role: RHEL/yum_install
+  strategy: free
+
+- hosts: 'windows'
+  gather_facts: true
+  roles:
+    - role: windows/add_user
+  strategy: free
+
+
+- hosts: 'webservers'
+  gather_facts: false
   roles: 
-    - role: httpd_service
+    - role: RHEL/httpd_service
       VARS_LISTNER: '10080'
+  strategy: free
+
+- hosts: 'appservers'
+  gather_facts: false
+  roles:
+    - role: RHEL/jdk_service
   strategy: free

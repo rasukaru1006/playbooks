@@ -1,0 +1,5 @@
+---
+- name: check installed httpd
+  yum: 
+    state: latest
+  ignore_errors: true

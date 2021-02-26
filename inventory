@@ -1,11 +1,15 @@
 [webservers]
 10.100.10.158
 
-#[windows]
-#10.100.10.176
+[appservers]
+10.100.10.115
+
+[windows]
+10.100.10.240
 
 [linux:children]
 webservers
+appservers
 
 
 [linux:vars]
@@ -16,10 +20,9 @@ become=true
 become_user=root
 become_method=sudo
 
-#[windows:vars]
-#ansible_user=Administrator
-#ansible_password='P@ssw0rd'
-#ansible_connection=winrm
-#ansible_port=5985
-#ansible_winrm_server_cert_validation=ignore
-VAR_OS_gathering_dir_path='./'
+[windows:vars]
+ansible_user=Administrator
+ansible_password='P@ssw0rdNEC'
+ansible_connection=winrm
+ansible_port=5985
+ansible_winrm_server_cert_validation=ignore

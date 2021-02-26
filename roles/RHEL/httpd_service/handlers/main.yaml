@@ -3,4 +3,5 @@
   systemd:
     name: httpd.service
     state: restarted
+    enabled: yes
   become: yes

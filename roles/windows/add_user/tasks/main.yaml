@@ -1,0 +1,13 @@
+---
+- name: create wimdows user
+  win_user:
+    name: '{{ item.name }}'
+    password: '{{ item.password }}'
+    update_password: no
+    password_never_expires: yes
+    update_password: on_create
+  loop:
+  - name: User1
+    password: Password1
+  - name: User2
+    password: Password2

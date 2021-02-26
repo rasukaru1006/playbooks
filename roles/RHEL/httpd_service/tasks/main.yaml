@@ -1,5 +1,6 @@
 ---
-- name: check installed httpd
+- name: check installed httpd 
+  become: true
   yum: 
     name: httpd
     state: installed
