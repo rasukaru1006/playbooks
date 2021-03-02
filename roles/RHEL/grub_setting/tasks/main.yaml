@@ -1,0 +1,35 @@
+---
+
+- name: Check if cgroup memory and swapaccount in kernel
+  shell: grep GRUB_DEFAULT /etc/default/grub | grep -c "console=ttyS0,115200n8 console=tty0 net.ifnames=0 rd.blacklist=nouveau crashkernel=auto"
+  register: grub_status
+  ignore_errors: true
+
+- name: Edit Grubfile
+  lineinfile: 
+    dest: "/etc/default/grub"
+    regexp: 'GRUB_CMDLINE_LINUX_DEFAULT="(.*)"' 
+    line: 'GRUB_CMDLINE_LINUX_DEFAULT="console=ttyS0,115200n8 console=tty0 net.ifnames=0 rd.blacklist=nouveau crashkernel=auto ipv6.disable=1"'
+    backrefs: yes
+  become: true
+  when: grub_status.stdout == "0"
+
+- name: update-grub
+  shell: grub2-mkconfig -o /boot/grub2/grub.cfg
+  when: grub_status.stdout == "0"
+  become: true
+
+- name: reboot_system
+  when: grub_status.stdout == "0"
+  shell: "sleep 2 && reboot"
+  async: 1
+  poll: 0
+  become: true
+
+- name: wait_reboot_finished
+  when: grub_status.stdout == "0"
+  local_action:
+    module:  wait_for
+      host = "{{ inventory_hostname }}"
+      state = "started"
+      port = "22"

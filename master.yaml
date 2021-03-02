@@ -11,6 +11,7 @@
     - role: RHEL/disable_selinux
       var_selinux_state: "disabled"
       var_selinux_policy: "targeted"
+    - role: RHEL/grub_setting
   strategy: free
 
 - hosts: 'windows'
