@@ -1,0 +1,37 @@
+---
+- name: install_selinux
+  yum:
+    name: libselinux-python
+    state: latest
+  become: true
+
+
+- name: disable_selinux
+  selinux:
+     state: "{{ var_selinux_state }}"
+     policy: "{{ var_selinux_policy }}"
+  register: selinux
+  become: true
+
+- name: reboot_system
+  when: selinux.reboot_required
+  shell: "sleep 2 && reboot"
+  async: 1
+  poll: 0
+  become: true
+
+#- iname: wait_reboot_start
+#  
+#    module:  wait_for
+#      host = "{{ inventory_hostname }}" 
+#      state = "stopped"
+#      port = "22"
+#  when: selinux.reboot_required
+
+- name: wait_reboot_finished
+  when: selinux.reboot_required
+  local_action:
+    module:  wait_for
+      host = "{{ inventory_hostname }}"
+      state = "started"
+      port = "22"

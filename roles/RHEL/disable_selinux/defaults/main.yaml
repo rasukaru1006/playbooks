@@ -1,0 +1,4 @@
+#Disable or Enforcing or Permissive
+var_selinux_state: "disabled"
+#"Policy is required if state is not 'disabled'
+var_selinux_policy: "targeted"

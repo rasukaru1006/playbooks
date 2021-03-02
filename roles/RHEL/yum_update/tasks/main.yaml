@@ -1,5 +1,6 @@
 ---
-- name: check installed httpd
+- name: update all rpsm installed
   yum: 
     state: latest
   ignore_errors: true
+  become: true
