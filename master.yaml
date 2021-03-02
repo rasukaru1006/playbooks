@@ -3,6 +3,11 @@
   gather_facts: true
   roles:
     - role: RHEL/yum_install
+    - role: RHEL/yum_extra_install
+      var_yum_extra_install: "True"
+      yum_extra_installed:
+        - "traceroute"
+        - "nmap" 
   strategy: free
 
 - hosts: 'windows'

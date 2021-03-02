@@ -1,0 +1,9 @@
+---
+- name: install extra rpm-packages
+  yum: 
+    state: 
+    name: "{{ yum_extra_installed }}"
+  ignore_errors: true
+  when: 
+    - var_yum_extra_install == "True"
+    - yum_extra_installed is defined
