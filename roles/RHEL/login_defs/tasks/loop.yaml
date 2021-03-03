@@ -1,0 +1,13 @@
+vars:
+  dict_loop: 
+    outer_item1: 
+      name: VAR_PASS_MAX_DAY
+      value:  99999
+    outer_item2: 
+      name: VAR_PASS_MIN_LEN
+      value: 5
+    outer_item3:
+      name: VAR_PASS_WARN_AGE
+      value:  7
+
+

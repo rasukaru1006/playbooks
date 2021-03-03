@@ -1,0 +1,14 @@
+---
+- name: test
+  shell: grep "{{ outer_item.key }}" /etc/login.defs  | grep -c "{{ outer_item.value }}"
+  register: need_edit
+  ignore_errors: true
+  with_dict: "{{ logindefs_vars }}"
+  loop_control:
+    loop_var: outer_item
+
+
+- name: test2
+  shell: "echo "
+  when: need_edit.stdout is "0"
+

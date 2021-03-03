@@ -1,0 +1,7 @@
+---
+logindefs_vars:
+  - VAR_PASS_MAX_DAY: 99999
+  - VAR_PASS_MIN_LEN: 5
+  - VAR_PASS_WARN_AGE:  7
+
+
