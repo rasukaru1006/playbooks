@@ -1,5 +1,3 @@
-# 指定できる変数
-* VARS_SERVER_ROOT: '/etc/httpd'
-* VARS_LISTNER: '80'
-* VARS_HTTPD_USER: 'apache'
-* VARS_HTTPD_GROUP: 'apache'
+## 用途
+* 全インストール済みrpmパッケージの最新化
+  yum update -y 相当

@@ -12,6 +12,7 @@
       var_selinux_state: "disabled"
       var_selinux_policy: "targeted"
     - role: RHEL/grub_setting
+    - role: RHEL/pwquality_conf
   strategy: free
 
 - hosts: 'windows'

@@ -1,0 +1,6 @@
+var_minlen: "8"
+var_minclass: "4"
+var_dcredit: "-1"
+var_ucredit: "-1"
+var_lcredit: "-1"
+var_ocredit: "-1"
