@@ -6,3 +6,4 @@
     owner: 'root'
     mode: 644
   notify: chrony_restart
+  become: true
