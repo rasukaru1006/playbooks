@@ -13,6 +13,7 @@
       var_selinux_policy: "targeted"
     - role: RHEL/grub_setting
     - role: RHEL/pwquality_conf
+    - role: RHEL/chrony_conf
   strategy: free
 
 - hosts: 'windows'
