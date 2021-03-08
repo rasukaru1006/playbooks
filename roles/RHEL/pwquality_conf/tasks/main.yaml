@@ -1,0 +1,7 @@
+- name: pwquality_configurecheck
+  template: 
+    src: 'pwquality.conf'
+    dest: '/etc/security/pwquality.conf'
+    owner: 'root'
+    mode: 644
+    force: true 
