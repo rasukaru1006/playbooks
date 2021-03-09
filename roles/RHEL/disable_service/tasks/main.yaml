@@ -4,6 +4,5 @@
     name: "{{ disable_service_names }}"
     state: "disabled"
   when: 
-    - disable_service_names is defined
-    - activate_disable_service_role is "True"
+  - disable_service_names is defined
 
