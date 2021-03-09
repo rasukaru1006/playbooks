@@ -2,7 +2,8 @@
 - name: disable service
   systemd:
     name: "{{ disable_service_names }}"
-    state: "disabled"
+    state: "stopped"
+    enable: False
   when: 
   - disable_service_names is defined
 
