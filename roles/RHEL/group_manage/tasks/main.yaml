@@ -10,11 +10,7 @@
   become: true
 
 - name: check_register_sudoers
-  lineinfile:
-    dest: /etc/sudoers
-    state: present
-    regexp: "^%{{ item.name }}(.*)"
-    line: "^%{{ item.name }} {{ item.sudoers_define }}"
+  command: 'echo "%{{ item.name }} {{ item.sudoers_define }}" > /etc/sudoers.d/{{item.name}}'
   with_items: 
     - "{{ var_groups }}"
   when: 
