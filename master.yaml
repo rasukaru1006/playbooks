@@ -15,7 +15,7 @@
     - role: RHEL/pwquality_conf
     - role: RHEL/chrony_conf
     - role: RHEL/audit_rules
-    - role: RHEL/disabled_service
+    - role: RHEL/disable_service
     - role: RHEL/group_manage
       var_groups:
       - { name: "testgroup", gid: 1100 }
