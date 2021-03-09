@@ -21,9 +21,9 @@
       - { name: "testgroup", gid: 1100 }
     - role: RHEL/user_manage
       var_users: 
-      - { name: "testuser1", gid: 1100, uid: 1101}
-      - { name: "testuser2", gid: 1100, uid: 1102}
-      - { name: "testuser3", gid: 1100, uid: 1103}
+      - { name: "testuser1", uid: 1101, group: "testgroup"}
+      - { name: "testuser2", uid: 1102, group: "testgroup"}
+      - { name: "testuser3", uid: 1103, group: "testgroup"}
   strategy: free
 
 - hosts: 'windows'
