@@ -10,7 +10,9 @@
   become: true
 
 - name: check_register_sudoers
-  command: 'echo "%{{ item.name }} {{ item.sudoers_define }}" > /etc/sudoers.d/{{item.name}}'
+  lineinfile: 
+    path: /etc/sudoers
+    line: "%{{ item.name }} {{ item.sudoers_define }}" 
   with_items: 
     - "{{ var_groups }}"
   become: true
