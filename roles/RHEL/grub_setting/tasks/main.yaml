@@ -1,7 +1,7 @@
 ---
 
 - name: Check if cgroup memory and swapaccount in kernel
-  shell: grep GRUB_DEFAULT /etc/default/grub | grep -c "console=ttyS0,115200n8 console=tty0 net.ifnames=0 rd.blacklist=nouveau crashkernel=auto ipv6.disable=1"
+  shell: grep GRUB_DEFAULT /etc/default/grub | grep -c "GRUB_CMDLINE_LINUX_DEFAULT="console=ttyS0,115200n8 console=tty0 net.ifnames=0 rd.blacklist=nouveau crashkernel=auto ipv6.disable=1""
   register: grub_status
   ignore_errors: true
 
