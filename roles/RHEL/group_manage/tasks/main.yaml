@@ -10,8 +10,6 @@
   become: true
 
 - name: check_register_sudoers
-  when: 
-    - enable_register_sudoers is "True"
   lineinfile: 
     path: /etc/sudoers
     line: "%{{ item.name }} {{ item.sudoers_define }}" 
@@ -21,3 +19,5 @@
     - "{{ var_groups }}"
   become: true
   ignore_errors: true
+  when: 
+    - enable_register_sudoers is "True"
