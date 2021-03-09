@@ -2,7 +2,7 @@
 - name: create_user with id
   user:
     name: "{{ item.name }}"
-    gid: "{{ item.gid }}"
+    gid: "{{ item.group }}"
     uid: "{{ item.uid }}"
     state: present
   with_items:
