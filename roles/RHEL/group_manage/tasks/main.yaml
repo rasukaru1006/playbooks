@@ -2,7 +2,7 @@
 - name: create_groups
   group:
     name: "{{ item.name }}"
-    group: "{{ item.group }}"
+    gid: "{{ item.gid }}"
     state: present
   with_items:
     - "{{ var_groups }}"
