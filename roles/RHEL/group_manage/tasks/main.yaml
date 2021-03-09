@@ -21,3 +21,4 @@
     - enable_register_sudoers is "True"
     - var_groups.sudoers_define is defined
   become: true
+  ignore_errors: true

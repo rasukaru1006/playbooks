@@ -17,8 +17,9 @@
     - role: RHEL/audit_rules
     - role: RHEL/disable_service
     - role: RHEL/group_manage
+      enable_register_sudoers: "True"
       var_groups:
-      - { name: "testgroup", gid: 1100 }
+      - { name: "testgroup", gid: 1100 , sudoers_define: "ALL=(ALL) NOPASSWD:ALL" }
     - role: RHEL/user_manage
       var_users: 
       - { name: "testuser1", uid: 1101, group: "testgroup"}
