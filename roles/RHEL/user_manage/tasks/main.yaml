@@ -8,5 +8,6 @@
   with_items:
     - "{{ var_users }}"
   ignore_errors: true
+  become: true
 
 
