@@ -1,0 +1,21 @@
+---
+- name: add yum reposirtory
+  yum_repository: 
+    name: "{{ item.name }}"
+    state: present
+    description: "{{ item.description }}"
+    baseurl: "{{ item.url }}"
+  with_items: var_add_yum_repository
+  when: var_add_yum_repository is defined
+  ignore_errors: True
+  notify: yum_clean_all
+
+
+- name: disabled yum reposirtory
+  yum_repository: 
+    state: absent
+    name: "{{ item.name }}"
+  with_items: var_remove_yum_repository
+  when: var_remove_yum_repository is defined
+  ignore_errors: True
+  notify: yum_clean_all

@@ -1,6 +1,6 @@
 ---
-- name: update all rpsm installed
+- name: update all rpms installed
   yum: 
+    name: '*'
     state: latest
-  ignore_errors: true
   become: true
