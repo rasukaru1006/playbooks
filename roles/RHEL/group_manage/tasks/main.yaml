@@ -13,8 +13,5 @@
   command: 'echo "%{{ item.name }} {{ item.sudoers_define }}" > /etc/sudoers.d/{{item.name}}'
   with_items: 
     - "{{ var_groups }}"
-  when: 
-    - enable_register_sudoers is "True"
-    - item.sudoers_define is defined
   become: true
   ignore_errors: true
