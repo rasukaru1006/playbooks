@@ -13,8 +13,8 @@
   lineinfile:
     dest: /etc/sudoers
     state: present
-    regexp: '^%{{ item.name }}(.*)'
-    line: '^%{{ item.name }} {{ item.sudoers_define }}'
+    regexp: "^%{{ item.name }}(.*)"
+    line: "^%{{ item.name }} {{ item.sudoers_define }}"
   with_items: 
     - "{{ var_groups }}"
   when: 
