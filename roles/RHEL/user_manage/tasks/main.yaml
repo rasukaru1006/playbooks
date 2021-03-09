@@ -1,0 +1,12 @@
+---
+- name: create_user with id
+  user:
+    name: "{{ item.name }}"
+    gid: "{{ item.gid }}"
+    uid: "{{ item.uid }}"
+    state: present
+  with_items:
+    - "{{ var_users }}"
+  ignore_errors: true
+
+

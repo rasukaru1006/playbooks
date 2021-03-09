@@ -1,0 +1,10 @@
+---
+- name: edit audit.rules
+  copy:
+    src: audit.rules
+    dest: /etc/audit/rules.d/audit.rules
+    force: true
+    mode: 600
+    owner: 'root'
+  become: true
+  notify: restart_audit

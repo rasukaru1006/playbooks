@@ -1,0 +1,6 @@
+---
+- name: restart_audit
+  systemd: 
+    name: "auditd"
+    state: restarted
+  become: yes
