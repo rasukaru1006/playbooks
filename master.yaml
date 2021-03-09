@@ -11,9 +11,19 @@
     - role: RHEL/disable_selinux
       var_selinux_state: "disabled"
       var_selinux_policy: "targeted"
-    - role: RHEL/grub_setting
+#    - role: RHEL/grub_setting
     - role: RHEL/pwquality_conf
     - role: RHEL/chrony_conf
+    - role: RHEL/audit_rules
+    - role: RHEL/disabled_service
+    - role: RHEL/group_manage
+      var_groups:
+      - { name: "testgroup", gid: 1100 }
+    - role: RHEL/user_manage
+      var_users: 
+      - { name: "testuser1", gid: 1100, uid: 1101}
+      - { name: "testuser2", gid: 1100, uid: 1102}
+      - { name: "testuser3", gid: 1100, uid: 1103}
   strategy: free
 
 - hosts: 'windows'
