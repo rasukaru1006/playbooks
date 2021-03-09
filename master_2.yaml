@@ -4,7 +4,7 @@
   roles:
     - role: RHEL/disable_service
       disable_service_names: 
-        - postfix.service
+        - { name: postfix.service }
     - role: RHEL/yum_update
     - role: RHEL/manage_yum_repository
       var_add_yum_repository:  

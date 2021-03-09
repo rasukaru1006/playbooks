@@ -1,7 +1,7 @@
 ---
 - name: disable service
   systemd:
-    name: '{{ item }}'
+    name: '{{ item.name }}'
     state: "stopped"
     enabled: False
   with_items: disable_service_names
