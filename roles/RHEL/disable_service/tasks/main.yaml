@@ -3,7 +3,7 @@
   systemd:
     name: "{{ disable_service_names }}"
     state: "stopped"
-    enable: False
+    enabled: False
   when: 
   - disable_service_names is defined
 
