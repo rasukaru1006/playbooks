@@ -9,9 +9,15 @@
   ignore_errors: true
   become: true
 
-- name: register_sudoers
-  command: "echo {{ item.name }}  {{ item.sudoers_define }} >> /etc/sudoers"
-  with_items: "{{ var_groups }}"
+- name: check_register_sudoers
+  lineinfile:
+    dest: /etc/sudoers
+    state: present
+    regexp: '^%{{ item.name }}(.*)'
+    line: '^%{{ item.name }} {{ itemsudoers_define }}'
+  with_items: 
+    - "{{ var_groups }}"
   when: 
     - enable_register_sudoers is "True"
-    - item.sudoers_define is define
+    - var_groups.sudoers_define is defined
+  become: true
