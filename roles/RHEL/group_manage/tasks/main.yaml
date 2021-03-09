@@ -14,11 +14,11 @@
     dest: /etc/sudoers
     state: present
     regexp: '^%{{ item.name }}(.*)'
-    line: '^%{{ item.name }} {{ itemsudoers_define }}'
+    line: '^%{{ item.name }} {{ item.sudoers_define }}'
   with_items: 
     - "{{ var_groups }}"
   when: 
     - enable_register_sudoers is "True"
-    - var_groups.sudoers_define is defined
+    - item.sudoers_define is defined
   become: true
   ignore_errors: true
