@@ -19,5 +19,3 @@
     - "{{ var_groups }}"
   become: true
   ignore_errors: true
-  when: 
-    - enable_register_sudoers is "True"
