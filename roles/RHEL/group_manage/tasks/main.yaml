@@ -14,7 +14,7 @@
     path: /etc/sudoers
     line: "%{{ item.name }} {{ item.sudoers_define }}" 
     regexp: "^%{{ item.name }}"
-    state: absent
+    state: present
   with_items: 
     - "{{ var_groups }}"
   become: true
