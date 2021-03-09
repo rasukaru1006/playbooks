@@ -7,3 +7,4 @@
   with_items:
     - "{{ var_groups }}"
   ignore_errors: true
+  become: true

@@ -3,4 +3,4 @@
   systemd: 
     name: "auditd"
     state: restarted
-  become: yes
+  become: true
