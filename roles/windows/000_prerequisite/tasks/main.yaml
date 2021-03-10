@@ -1,0 +1,3 @@
+---
+- name: all hosts is healthy
+  win_ping: 

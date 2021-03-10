@@ -1,0 +1,13 @@
+---
+- hosts: 'windows'
+  gather_facts: False
+  roles:
+    - role: windows/000_prerequisite
+  strategy: linear
+    
+
+- hosts: 'linux'
+  gather_facts: False
+  roles:
+    - role: RHEL/000_prerequisite
+  strategy: linear
