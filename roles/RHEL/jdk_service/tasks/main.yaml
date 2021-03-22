@@ -1,6 +1,0 @@
----
-- name: make installed opensjdk
-  become: true
-  yum: 
-    name: java-openjdk
-    state: installed

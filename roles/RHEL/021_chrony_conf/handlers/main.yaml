@@ -3,5 +3,4 @@
   systemd:
     name: chronyd.service
     state: restarted
-    enabled: yes
   become: yes

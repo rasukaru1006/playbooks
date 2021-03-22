@@ -1,6 +1,0 @@
----
-- name: update all rpms installed
-  yum: 
-    name: '*'
-    state: latest
-  become: true

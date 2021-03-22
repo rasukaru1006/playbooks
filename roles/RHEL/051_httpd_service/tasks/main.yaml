@@ -1,0 +1,17 @@
+---
+- name: check installed httpd 
+  become: true
+  yum: 
+    name: httpd
+    state: installed
+
+- name: copy config-file to remote
+  become: true
+  template: 
+    src: 'httpd.conf'
+    dest: '/etc/httpd/conf/httpd.conf'
+    owner: 'root'
+    mode: 644
+    force: true 
+  notify: httpd_restart
+
