@@ -1,0 +1,4 @@
+---
+- name: timedatectl
+  timezone:
+    name: "{{ var_timezone }}"
