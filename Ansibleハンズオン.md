@@ -24,7 +24,6 @@ ansibleコマンドを利用して、全サーバーから一括で情報を取�
   
   
 
-***  
 
 # Hands-On 
 
@@ -118,7 +117,7 @@ childrenを利用してグループをまとめて定義することも可能。
   - WindowsサーバーはWinRMで接続する  
     ※Windowsグループにはエラー回避のためansible_winrm_server_cert_validation=ignoreを定義する
   
-
+  **解答例**
   * ini形式の場合
 
     ```
@@ -238,6 +237,8 @@ ping/tasks/main.yaml
 **POINT**  
 - nameは任意の指定でOK。
 - roleを指定すると最初に呼び出されるbのは tasks配下のmain.yamlなので、そこに処理を書き込みます。
+  
+
 
 2. master-playbookは下記のように指定する。  
 下記のように指定することで、それぞれのホストでroleを呼び出す。  
@@ -265,15 +266,90 @@ roleの名前はディレクトリ名で指定する。
 
 **実行結果**
 ```
+PLAY [Linux] *******************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [192.168.215.14]
+ok: [192.168.130.87]
+
+TASK [ping : ping] *************************************************************
+ok: [192.168.215.14]
+ok: [192.168.130.87]
+
+PLAY [Windows] *****************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [192.168.156.42]
+ok: [192.168.132.159]
+
+TASK [win_ping : win_ping] *****************************************************
+ok: [192.168.132.159]
+ok: [192.168.156.42]
+
+PLAY RECAP *********************************************************************
+192.168.130.87             : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+192.168.132.159            : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+192.168.156.42             : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+192.168.215.14             : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
 ```
 
+
+
 ### roleを利用したplaybookの作成
-以下を目標にrole分けをしてplaybookを作成していく
-- linux1にはhttpdをインストールする
-- linux2にはopenjdkをインストールする
-- win1はデスクトップに指定したテキストファイルを置く
-- win2ではwebサービスを導入し、再起動を行う
-- Linuxグループはselinuxを無効化する
+role配下に作成できるディレクトリのそれぞれの役割
+- tasks - このロールによって実行される主なタスクの一覧
+- handlers - このロールによって使用される可能性のあるハンドラー
+- defaults - ロールのデフォルト変数
+- vars - ロールの他の変数です 
+- files - このロールでデプロイできるファイル
+- templates - このロールでデプロイできるテンプレート
+- meta - このロールのメタデータ
+
+
+### handlersは、notify: <handlersのnameに指定した値> で、
+1度だけ特定処理が完了した後に処理を呼び出すことができる。
+  ⇒ 何度notifyされてもhandler実行されるのは1回だけ  
+
+
+
+
+以下を目標にroleを作成し、playbookを作成していく
+- linux1にhttpdをインストールする
+  * httpd_confはtemplateに定義したものを利用する。
+  * 変数として、ServerRoot,Listen,User,Groupを変数で指定可能とする
+  * 変数のデフォルトはhttpd.confのデフォルト値とする
+  * インストール完了後にhttpdサービスを起動状態にする
+  
+
+1. role構造を決定する
+本処理で利用するrole内に作成するディレクトリは
+- メイン処理を記載するtasks
+- templateになるhttpd.confを格納するtemplates
+- デフォルトの変数を指定するdefaults
+- 処理終了後に呼び出される処理を定義するhandlers
+
+
+```
+./  
+ |- master-playbook.yaml  
+  |- role    
+     |- httpd    
+         |- tasks  
+         |-  |- main.yaml  
+         |- handlers  
+         |   |- main.yaml  
+         |- templates  
+         |   |- main.yaml  
+         |- defaults  
+             |- main.yaml  
+```
+
+
+
+
+解答例はファイルに格納。
+
 
 
 ## ansible-playbookの実行
